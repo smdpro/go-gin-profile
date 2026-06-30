@@ -1,8 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"go-gin-profile/internal/config"
+	"log"
+)
 
 func main() {
-	fmt.Println("Hello, World!")
-	
+	cfg, err := config.Load()
+	if err != nil {
+		log.Fatalf("Error loading config:", err)
+		return
+	}
+	log.Println("Config loaded successfully:")
+	log.Println("MongoURI:", cfg.MongoURI)
+	log.Println("Port:", cfg.Port)
 }
